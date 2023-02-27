@@ -34,6 +34,7 @@ const App = () => {
     const documentViewer = new Core.DocumentViewer();
     documentViewer.setScrollViewElement(scrollView.current);
     documentViewer.setViewerElement(viewer.current);
+    documentViewer.getDisplayModeManager().disableVirtualDisplayMode();
     documentViewer.setOptions({ enableAnnotations: true });
     documentViewer.loadDocument('/files/pdftron_about.pdf');
 
@@ -106,6 +107,46 @@ const App = () => {
   return (
     <div className="App">
       <div id="main-column">
+      <div className="center" id="tools">
+          <button onClick={zoomOut}>
+            <ZoomOut />
+          </button>
+          <button onClick={zoomIn}>
+            <ZoomIn />
+          </button>
+          <button onClick={startEditingContent} title="Switch to edit mode">
+            <EditContent />
+          </button>
+          <button onClick={addParagraph} title="Add new paragraph">
+            <AddParagraph />
+          </button>
+          <button onClick={addImageContent} title="Add new content image">
+            <AddImageContent />
+          </button>
+          <button onClick={endEditingContent} title="End edit mode">
+            Finish Editing
+          </button>
+          <button onClick={createRectangle}>
+            <AnnotationRectangle />
+          </button>
+          <button onClick={createRedaction} title="Create Redaction">
+            <AnnotationRedact />
+          </button>
+          <button onClick={applyRedactions} title="Apply Redactions">
+            <AnnotationApplyRedact />
+          </button>
+          <button onClick={selectTool}>
+            <Select />
+          </button>
+          <button
+            onClick={() => {
+              // Flip the boolean
+              setSearchContainerOpen(prevState => !prevState);
+            }}
+          >
+            <Search />
+          </button>
+        </div>
         <div className="viewer-container">
           <div className="pdfkit-canvas">
             <div id="scroll-view" ref={scrollView}>
