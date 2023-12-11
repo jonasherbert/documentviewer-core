@@ -35,13 +35,13 @@ const App = () => {
     documentViewer.setScrollViewElement(scrollView.current);
     documentViewer.setViewerElement(viewer.current);
     documentViewer.enableAnnotations();
-    documentViewer.loadDocument('/files/demo.pdf');
+    documentViewer.loadDocument('/files/demo.pdf', {licenseKey: "Add your license key here!" });
 
     setDocumentViewer(documentViewer);
 
     documentViewer.addEventListener('documentLoaded', () => {
       console.log('document loaded');
-      documentViewer.setToolMode(documentViewer.getTool(Core.Tools.ToolNames.EDIT));
+      documentViewer.setToolMode(documentViewer.getTool(Core.Tools.ToolNames.PAN));
       setAnnotationManager(documentViewer.getAnnotationManager());
     });
   }, []);
